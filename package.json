@@ -2,17 +2,30 @@
   "name": "@hga/h-utils",
   "version": "1.0.0",
   "description": "工具库",
-  "main": "index.js",
+  "type": "module",
+  "main": "lib/main.js",
+  "module": "lib/main.esm.js",
+  "browser": "lib/main.umd.js",
+  "types": "lib/types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "rollup --config rollup.config.js --watch --environment ENV:dev",
+    "build": "rollup --config rollup.config.js --environment ENV:prod"
   },
   "author": "hga",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.24.4",
     "@eslint/js": "^9.1.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
     "eslint": "^9.1.1",
     "globals": "^15.0.0",
     "prettier": "^3.2.5",
+    "rollup": "^4.17.1",
+    "tslib": "^2.6.2",
     "typescript": "^5.4.5",
     "typescript-eslint": "^7.7.1"
   }
