@@ -8,25 +8,20 @@ interface TreeNode {
  * @return {*}
  */
 export function treeFindNode<T extends TreeNode>(
-  field: string,
-  value: any,
+  predicate: (node: T) => boolean,
   tree: T[]
 ): T | null {
-  if (typeof field !== 'string' || !Array.isArray(tree)) {
+  if (!Array.isArray(tree)) {
     throw new Error(
       'Invalid arguments: field must be a string and tree must be an array'
     )
   }
 
   for (const node of tree) {
-    if (node[field] === value) {
+    if (predicate(node)) {
       return node
     } else if (node.children && Array.isArray(node.children)) {
-      const result = treeFindNode(
-        field,
-        value,
-        node.children as T[]
-      )
+      const result = treeFindNode(predicate, node.children as T[])
       if (result !== null) {
         return result
       }
