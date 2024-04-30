@@ -7,7 +7,7 @@ interface TreeNode {
  * @description: 根据字段的值，获取对应的树节点
  * @return {*}
  */
-export function findTreeNodeByFieldValue<T extends TreeNode>(
+export function treeFindNode<T extends TreeNode>(
   field: string,
   value: any,
   tree: T[]
@@ -22,7 +22,7 @@ export function findTreeNodeByFieldValue<T extends TreeNode>(
     if (node[field] === value) {
       return node
     } else if (node.children && Array.isArray(node.children)) {
-      const result = findTreeNodeByFieldValue(
+      const result = treeFindNode(
         field,
         value,
         node.children as T[]
