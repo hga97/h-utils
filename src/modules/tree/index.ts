@@ -28,3 +28,38 @@ export function treeFindNode<T extends TreeNode>(
 
   return null
 }
+
+/**
+ * @description: 根据字段，获取对应的树路径
+ * @param {*} tree
+ * @param {*} predicate
+ * @param {*} field
+ * @param {*} path
+ * @return {*}
+ */
+export function treeFindPath<T extends TreeNode>(
+  tree: T[],
+  predicate: (node: T) => boolean,
+  field = '',
+  path: T[] = []
+): T[] {
+  if (!Array.isArray(tree)) {
+    return []
+  }
+
+  for (const data of tree) {
+    field === '' ? path.push(data) : path.push(data[field])
+    if (predicate(data)) return path
+    if (data.children) {
+      const findChildren = treeFindPath(
+        data.children as T[],
+        predicate,
+        field,
+        path
+      )
+      if (findChildren.length) return findChildren
+    }
+    path.pop()
+  }
+  return []
+}
