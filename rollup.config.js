@@ -37,5 +37,9 @@ export default {
       exclude: 'node_modules/**', // 忽略 node_modules
       babelHelpers: true, // 开启体积优化
     }),
-  ]
+  ],
+  watch: {
+    exclude: 'node_modules/**',
+    include: 'src/**'
+  }
 }
