@@ -12,9 +12,7 @@ export function treeFindNode<T extends TreeNode>(
   tree: T[]
 ): T | null {
   if (!Array.isArray(tree)) {
-    throw new Error(
-      'Invalid arguments: field must be a string and tree must be an array'
-    )
+    throw new Error('Invalid arguments: tree must be an array')
   }
 
   for (const node of tree) {
