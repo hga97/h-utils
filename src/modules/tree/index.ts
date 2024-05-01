@@ -8,8 +8,8 @@ interface TreeNode {
  * @return {*}
  */
 export function treeFindNode<T extends TreeNode>(
-  predicate: (node: T) => boolean,
-  tree: T[]
+  tree: T[],
+  predicate: (node: T) => boolean
 ): T | null {
   if (!Array.isArray(tree)) {
     throw new Error('Invalid arguments: tree must be an array')
@@ -19,7 +19,7 @@ export function treeFindNode<T extends TreeNode>(
     if (predicate(node)) {
       return node
     } else if (node.children && Array.isArray(node.children)) {
-      const result = treeFindNode(predicate, node.children as T[])
+      const result = treeFindNode(node.children as T[], predicate)
       if (result !== null) {
         return result
       }
